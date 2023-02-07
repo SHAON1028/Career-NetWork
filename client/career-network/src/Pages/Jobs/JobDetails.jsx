@@ -9,11 +9,11 @@ import { useLoaderData } from 'react-router-dom';
 
 const JobDetails = () => {
     const data = useLoaderData()
-    const { _id, job_title, duty_hours, location, salary, skills, experience, deadline,description,jobSummary } = data
-    const [apply,setApply] = useState(0)
-    const [saveJob,setSaveJob] = useState(0)
-    const descrip = description.split('.')
-    console.log(descrip)
+    const { _id, job_title, duty_hours, location, salary, skills, experience, deadline, description, jobSummary } = data
+    const [apply, setApply] = useState(0)
+    const [saveJob, setSaveJob] = useState(0)
+    // const descrip = description.split('.')
+    // console.log(descrip)
     const handleApply = () => {
         setApply(1)
         toast.success('Apply Success')
@@ -35,46 +35,41 @@ const JobDetails = () => {
                     <h1 className='text-lg font-bold mb-4'>Company Name </h1>
 
                     <div className='flex items-center' >
-                        <MdOutlineDescription/>
-                    <h2 className='ml-1 text-lg font-bold'> Job Summary</h2>
+                        <MdOutlineDescription />
+                        <h2 className='ml-1 text-lg font-bold'> Job Summary</h2>
                     </div>
-                    <div className="divider"></div> 
+                    <div className="divider"></div>
                     <p className='mb-6'>{jobSummary}</p>
                     <div className='flex items-center' >
-                        <MdOutlineDescription/>
-                    <h2 className='ml-1 text-lg font-bold'> Job Responsibility</h2>
+                        <MdOutlineDescription />
+                        <h2 className='ml-1 text-lg font-bold'> Job Responsibility</h2>
                     </div>
-                    <div className="divider"></div> 
-                   <ul className='pl-6'>{
-                    
-                    descrip.map(text=><li className='list-disc '>{text}.</li>)
-                    }
+                    <div className="divider"></div>
+                    <p>Description : {description }</p>
+                    <p className='font-bold text-lg mt-4'>Job Location</p>
+                    <div className='flex items-center pl-2'>
+                        <GoLocation />
+                        <p>{location}</p>
+                    </div>
+                    <h1 className='text-lg font-bold ml-1 mt-6'>Employment Status</h1>
+                    <div className='flex items-center pl-3 '>
+                        <FiClock />
+                        <p className='pl-1'>{duty_hours}</p>
+                    </div>
 
-                   </ul>
-                   <p className='font-bold text-lg mt-4'>Job Location</p>
-                   <div className='flex items-center pl-2'>
-                   <GoLocation/>
-                   <p>{location}</p>
-                   </div>
-                   <h1 className='text-lg font-bold ml-1 mt-6'>Employment Status</h1>
-                   <div className='flex items-center pl-3 '>
-                  <FiClock/>
-                  <p className='pl-1'>{duty_hours }</p>
-                  </div>
-                 
-                    
-                  <h1 className='text-lg font-bold ml-1 mt-6'>Experience Requirements</h1>
-                   <div className='flex items-center pl-3 '>
-                  <FiClock/>
-                  <p className='pl-1'>At most {experience } {experience>1?' years' :' year'} </p>
-                  </div>
-                   <h1 className='text-lg font-bold mt-6'>Salary</h1>
-                   <p className='pl-3'>{salary  }</p>
-                   <h1 className='text-lg font-bold ml-1 mt-6'>Last Date of Apply</h1>
-                   <div className='flex items-center pl-3 '>
-                  <BsCalendarDate/>
-                  <p className='pl-1'>{deadline} </p>
-                  </div>
+
+                    <h1 className='text-lg font-bold ml-1 mt-6'>Experience Requirements</h1>
+                    <div className='flex items-center pl-3 '>
+                        <FiClock />
+                        <p className='pl-1'>At most {experience} {experience > 1 ? ' years' : ' year'} </p>
+                    </div>
+                    <h1 className='text-lg font-bold mt-6'>Salary</h1>
+                    <p className='pl-3'>{salary}</p>
+                    <h1 className='text-lg font-bold ml-1 mt-6'>Last Date of Apply</h1>
+                    <div className='flex items-center pl-3 '>
+                        <BsCalendarDate />
+                        <p className='pl-1'>{deadline} </p>
+                    </div>
                 </div>
                 <div className='mt-10 h-64 lg:bg-[#F5F5F5]'>
                     <div className='bg-black text-white h-10 p-3 rounded-md rounded-b-none font-semibold hidden lg:block'>
@@ -90,10 +85,10 @@ const JobDetails = () => {
                         <p className='mb-2'><span className='font-bold '>Application Deadline :</span> {deadline}</p>
 
                     </div>
-                   { apply==0 ?  <button onClick={handleApply} className='bg-green-600 rounded-md h-10 w-full mt-8 text-center text-white font-bold'>Apply</button>: <button className='bg-green-200 disabled rounded-md h-10 w-full mt-8 text-center text-green-800 font-bold'>Application sent successfully</button>}
-                {
-                    saveJob==0?     <button onClick={handleSaveJob} className='bg-black rounded-md h-10 w-full mt-2 text-center text-white font-bold'>Save</button>:<button onClick={handleUnSaveJob} className='bg-gray-600 rounded-md h-10 w-full mt-2 text-center text-white font-bold'>Unsave</button>
-                }
+                    {apply == 0 ? <button onClick={handleApply} className='bg-green-600 rounded-md h-10 w-full mt-8 text-center text-white font-bold'>Apply</button> : <button className='bg-green-200 disabled rounded-md h-10 w-full mt-8 text-center text-green-800 font-bold'>Application sent successfully</button>}
+                    {
+                        saveJob == 0 ? <button onClick={handleSaveJob} className='bg-black rounded-md h-10 w-full mt-2 text-center text-white font-bold'>Save</button> : <button onClick={handleUnSaveJob} className='bg-gray-600 rounded-md h-10 w-full mt-2 text-center text-white font-bold'>Unsave</button>
+                    }
 
 
                 </div>
