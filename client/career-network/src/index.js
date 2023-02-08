@@ -5,15 +5,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthProvider from './Context/AuthProvider';
 import {  QueryClient, QueryClientProvider } from 'react-query';
+import { Provider } from 'react-redux';
+import store from './app/Store/Store';
 
 const queryClient = new QueryClient()
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
       <AuthProvider>
         <App />
       </AuthProvider>
+      </Provider>
     </QueryClientProvider>
   </React.StrictMode>
 );

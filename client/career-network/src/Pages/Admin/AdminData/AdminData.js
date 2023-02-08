@@ -10,7 +10,7 @@ function AdminData() {
           <div className='gap-3  flex justify-center items-center'>
             <Link to={'/admin/recruiter'}><button className='btn btn-primary'>recruite</button></Link>
             <Link to={"/admin/jobseerker"}><button className='btn btn-secondary'>job seeker</button></Link>
-            <Link to={"/admin/admintable"}><button className='btn-info btn'>admin</button></Link>
+            <Link to={"/admin/admintable"}><button className='btn-primary btn'>admin</button></Link>
           </div>
       </div>
     </div>

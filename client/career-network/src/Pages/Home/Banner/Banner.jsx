@@ -14,7 +14,7 @@ const Banner = () => {
                     <p className="my-5 md:text-lg font-besicFont capitalize">cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     <div className='flex justify-center gap-6'>
                         <button className="btn w-32 bg-green-400 hover:bg-green-400 border-none disabled:pointer-events-none">Register</button>
-                        <Link to='/contact/email' className="btn w-32 bg-blue-400 hover:bg-blue-400 border-none disabled:pointer-events-none">Contact us</Link>
+                        <Link to='/contact/email' className="btn w-32 bg-blue-400 hover:bg-blue-400 border-none disabled:pointer-events-none">Contact Us</Link>
                     </div>
                 </div>
 

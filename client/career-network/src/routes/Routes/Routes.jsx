@@ -25,7 +25,14 @@ import JobSeekerTabel from "../../Pages/Admin/UserTabel/JobSeekerTabel";
 import AdminTable from "../../Pages/Admin/UserTabel/AdminTable";
 import DisplayError from "../../Pages/DisplayError/DisplayError";
 import JobDetails from "../../Pages/Jobs/JobDetails";
+<<<<<<< HEAD
+import AdminRoute from "../../PrivateRoute/AdminRoute";
+import Profile from "../../Pages/Profile/Profile";
+import ContactWithEmail from "../../Pages/ContactUs/ContactWithEmail";
+
+=======
 import ContactWithEmail from "../../Pages/ContactWithEmail/ContactWithEmail";
+>>>>>>> 4a6af1b0a7791d615472d7e3be058504a43b98ac
 
 
 const router = createBrowserRouter([
@@ -47,13 +54,22 @@ const router = createBrowserRouter([
                 element: <Login></Login>
             },
             {
+<<<<<<< HEAD
+                path:'/contact/email',
+                element:<ContactWithEmail></ContactWithEmail>
+=======
                 path: '/contact/email',
                 element: <ContactWithEmail></ContactWithEmail>
+>>>>>>> 4a6af1b0a7791d615472d7e3be058504a43b98ac
             },
             {
                 path: '/category/:name',
                 element: <Jobs></Jobs>,
                 loader: ({ params }) => fetch(`http://localhost:5000/category/${params.name}`)
+            },
+            {
+                path:'/profile',
+                element:<Profile></Profile>
             },
             {
                 path: '/alljobs',
@@ -144,7 +160,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/admin/admintable",
-                element:<AdminTable></AdminTable>
+                element:<AdminRoute><AdminTable></AdminTable></AdminRoute>
             }
         ])
     }

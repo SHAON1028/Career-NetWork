@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { FiMenu } from 'react-icons/fi';
@@ -7,27 +7,13 @@ import { BsMoonFill } from 'react-icons/bs';
 import { BsFillSunFill } from 'react-icons/bs';
 
 import { useQuery } from 'react-query';
-import { ThemeContext } from '../../../App';
+import { useDispatch, useSelector } from 'react-redux';
+import { onSetTheme, setMenu } from '../../../app/AllStateSlice/StateManageSlice';
 
 const Navbar = () => {
-    const {theme, setTheme} = useContext(ThemeContext)
-
-    const { user, logOut ,menu,setMenu} = useContext(AuthContext)
- 
-    useEffect(() => {
-        if (theme === "dark") {
-            document.documentElement.classList.add("dark")
-
-        } else {
-            document.documentElement.classList.remove("dark")
-        }
-    }, [theme])
-
-    const handleTheme = () => {
-        setTheme(theme === "dark" ? "light" : "dark")
-    }
-
-
+    const { user, logOut } = useContext(AuthContext)
+    const {menu,them} = useSelector(store => store.state)
+    const dispatch = useDispatch()
     const handleLogOut = () => {
         logOut()
             .then(() => { })
@@ -42,7 +28,7 @@ const Navbar = () => {
         })
     })
     const navItems = <>
-        {theme==='light'? <button onClick={handleTheme} className=' mt-1 text-md w-full'><li className={` listItem  ${menu ? 'text-black' : "text-white lg:text-black"}`}><BsMoonFill/></li></button>:<button onClick={handleTheme} className='mt-1 w-full text-md text-yellow-600 '><li className={` listItem ${menu ? 'text-black' : "text-white lg:text-black"}`}><BsFillSunFill/></li></button>}
+        <button onClick={()=>dispatch(onSetTheme())} className=' mt-1 text-md w-full'><li className={` listItem  ${menu ? 'text-black' : "text-white lg:text-black"}`}>{them === false ? <BsMoonFill/>:<BsFillSunFill className='text-yellow-600'/>}</li></button>
         <Link to="/alljobs"><li className={`listItem ${menu ? 'text-black' : "text-white lg:text-black"} `}>Jobs</li></Link>
         <Link><li className={`listItem ${menu ? "text-black" : "text-white lg:text-black"} `}>Blogs</li></Link>
         <Link><li className={` listItem ${menu ? "text-black" : "text-white lg:text-black"}`}>About</li></Link>
@@ -65,7 +51,7 @@ const Navbar = () => {
                 </div>
                 <div className='navbar-end'>
                     <div className="dropdown">
-                        <label onClick={() => setMenu(!menu)} className="btn btn-ghost lg:hidden">
+                        <label onClick={() =>dispatch(setMenu())} className="btn btn-ghost lg:hidden">
                             <i className=''>{menu ? <FiMenu className='text-3xl'></FiMenu> : <RxCross1 className='text-3xl '></RxCross1>}</i>
                         </label>
                     </div>
