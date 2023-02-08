@@ -2,7 +2,7 @@ import React from 'react'
 
 function ResumeManager() {
   return (
-    <div>ResumeManager</div>
+    <div>Resume Manager</div>
   )
 }
 

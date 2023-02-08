@@ -1,15 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from '../Pages/Shared/Footer/Footer';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
-import { AuthContext } from '../Context/AuthProvider';
+import { useDispatch} from 'react-redux';
+import { setOnlyMenuTrue } from '../app/AllStateSlice/StateManageSlice';
 
 const Main = () => {
-    const {setMenu}=useContext(AuthContext)
+    const dispatch = useDispatch()
     return (
         <div>
             <Navbar></Navbar>
-            <div onClick={()=>setMenu(true)}>
+            <div onClick={()=>dispatch(setOnlyMenuTrue())}>
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>

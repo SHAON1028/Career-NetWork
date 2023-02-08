@@ -7,7 +7,6 @@ const auth = getAuth(app)
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [menu, setMenu] = useState(true)
     const [adminNavmenu, setAdminNavMenu] = useState(true)
     const [addValueInModal,setAddValueInModal]=useState(null)
 
@@ -51,8 +50,6 @@ const AuthProvider = ({ children }) => {
         updateUser,
         googleSignIn,
         githubSignIn,
-        menu,
-        setMenu,
         setAdminNavMenu,
         adminNavmenu,
         setAddValueInModal,

@@ -4,7 +4,7 @@ function Recruit() {
   return (
     <div>
           <div>
-              <h1>job post </h1>
+              <h1>Job post </h1>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, quibusdam.</p>
         </div>
           <div>

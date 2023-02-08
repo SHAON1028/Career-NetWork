@@ -8,7 +8,7 @@ import useToken from '../../others/Hooks/useToken';
 
 const Login = () => {
     const navigate = useNavigate()
-    const { logIn, googleSignIn, setUser, githubSignIn, setMenu } = useContext(AuthContext)
+    const { logIn, googleSignIn, setUser, githubSignIn } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
@@ -25,7 +25,6 @@ const Login = () => {
 
     const handleLogin = data => {
         logIn(data.email, data.password)
-
             .then(result => {
                 const user = result.user;
                 console.log(user);
@@ -59,7 +58,7 @@ const Login = () => {
 
 
     return (
-        <div onClick={() => setMenu(true)} className='h-[600px] flex justify-center'>
+        <div className='h-[600px] flex justify-center'>
             <div className='w-96 p-7'>
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <h2 className="text-3xl font-bold text-center">Login</h2>
