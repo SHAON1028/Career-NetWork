@@ -25,14 +25,10 @@ import JobSeekerTabel from "../../Pages/Admin/UserTabel/JobSeekerTabel";
 import AdminTable from "../../Pages/Admin/UserTabel/AdminTable";
 import DisplayError from "../../Pages/DisplayError/DisplayError";
 import JobDetails from "../../Pages/Jobs/JobDetails";
-<<<<<<< HEAD
-import AdminRoute from "../../PrivateRoute/AdminRoute";
-import Profile from "../../Pages/Profile/Profile";
-import ContactWithEmail from "../../Pages/ContactUs/ContactWithEmail";
-
-=======
 import ContactWithEmail from "../../Pages/ContactWithEmail/ContactWithEmail";
->>>>>>> 4a6af1b0a7791d615472d7e3be058504a43b98ac
+import AddResume from "../../Pages/EmployeeDeshbord/ResumeManager/AddResume";
+import Profile from "../../Pages/Profile/Profile";
+import AdminRoute from "../../PrivateRoute/AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -54,13 +50,8 @@ const router = createBrowserRouter([
                 element: <Login></Login>
             },
             {
-<<<<<<< HEAD
                 path:'/contact/email',
                 element:<ContactWithEmail></ContactWithEmail>
-=======
-                path: '/contact/email',
-                element: <ContactWithEmail></ContactWithEmail>
->>>>>>> 4a6af1b0a7791d615472d7e3be058504a43b98ac
             },
             {
                 path: '/category/:name',
@@ -69,7 +60,8 @@ const router = createBrowserRouter([
             },
             {
                 path:'/profile',
-                element:<Profile></Profile>
+                element:<Profile></Profile>,
+                loader:({params}) => fetch(`http://localhost:5000/checkit?email=${params.email}`)
             },
             {
                 path: '/alljobs',
@@ -80,7 +72,12 @@ const router = createBrowserRouter([
                 path: '/jobdetails/:jobId',
                 element: <JobDetails></JobDetails>,
                 loader: ({params}) => fetch(`http://localhost:5000/alljobs/${params.jobId}`)
-            }
+            },
+            {
+                path:'/profile/:email',
+                element:<Profile></Profile> ,
+                loader: ({params}) => fetch(`http://localhost:5000/checkit?email=${params?.email}`)
+              }
         ]
     },
     {
@@ -132,6 +129,10 @@ const router = createBrowserRouter([
                 element: <ResumeManager></ResumeManager>
             },
             {
+                path:"/employedashboard/addresume",
+                element:<AddResume></AddResume>
+            },
+            {
                 path: "/employedashboard/employejobs",
                 element: <EmployeJobs></EmployeJobs>
             },
@@ -139,6 +140,7 @@ const router = createBrowserRouter([
                 path: "/employedashboard/myaccount",
                 element: <MyAccount></MyAccount>
             },
+          
         ])
     },
     {

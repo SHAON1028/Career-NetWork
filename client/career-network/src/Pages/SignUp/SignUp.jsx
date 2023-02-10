@@ -5,12 +5,14 @@ import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import useToken from '../../others/Hooks/useToken';
+import { FaImages } from "react-icons/fa";
 
 const SignUp = () => {
     const { registerUser, setUser, updateUser, googleSignIn } = useContext(AuthContext);
     const [createdUserEmail, setCreatedUserEmail] = useState('')
     const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
+    // const imageHostKey = process.env.REACT_APP_imagebb_key;
     const location = useLocation();
     const { register, handleSubmit, formState: { errors } } = useForm()
     const googleProvider = new GoogleAuthProvider()
@@ -23,23 +25,56 @@ const SignUp = () => {
 
 
     const handleSignUp = data => {
-        console.log(data);
-        registerUser(data.email, data.password)
-            .then(result => {
-                const user = result.user
-                setUser(user);
-                console.log(user)
-                const userInfo = {
-                    displayName: user.name
+        // console.log(data)
+        const image = data.image[0]
+        console.log(image)
+        const formData = new FormData()
+        formData.append('image', image)
+        const url = `https://api.imgbb.com/1/upload?key=3e612e96581a7ae3ea2fc832c651797c`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                console.log(imgData)
+                if (imgData.success) {
+                    registerUser(data.email, data.password)
+                        .then(result => {
+                            const verify = false
+                            const user = result.user
+                            const profileImg = imgData.data.url
+                            console.log(user);
+                            setUser(user);
+                            // console.log(user)
+                            const userInfo = {
+                                displayName: user.name
+                            }
+                            saveUser(
+                                data.name,
+                                data.email,
+                                data.role,
+                                verify,
+                                data.address,
+                                imgData.data.url,
+                                data.profession,
+                                data.phone,
+                                data.skills,
+                                data.experience,
+                                
+                            );
+                            updateUser(userInfo)
+                                .then(() => {
+                                })
+                                .catch(err => console.log(err));
+                            toast('Your Account Created Successfully.')
+                        })
+                        .catch(error => console.log(error))
                 }
-                saveUser(data.name, data.email, data.role);
-                updateUser(userInfo)
-                    .then(() => {
-                    })
-                    .catch(err => console.log(err));
-                toast('Your Account Created Successfully.')
             })
-            .catch(error => console.log(error))
+
+        // console.log(data);
+
     }
 
     const handlegoogle = () => {
@@ -63,9 +98,21 @@ const SignUp = () => {
     }
 
 
-    const saveUser = (name, email, role) => {
+    const saveUser = (name, email, role, profession, address, phone, skills, experience, img) => {
         const verify = false
-        const user = { name, email, role, verify };
+        const user = {
+            name,
+            email,
+            role,
+            verify,
+            address: address,
+            profileImg: img,
+            profession: profession ,
+            phone: phone,
+            skills: skills,
+            experience: experience,
+
+        };
         fetch('http://localhost:5000/user', {
             method: 'POST',
             headers: {
@@ -81,7 +128,7 @@ const SignUp = () => {
 
 
     return (
-        <div className='h-[600px] flex justify-center'>
+        <div className=' flex justify-center'>
             <div className='w-96 p-7'>
                 <h2 className='text-3xl font-bold text-center'>Sign Up</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
@@ -108,6 +155,41 @@ const SignUp = () => {
                         })} className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                     </div>
+                    <div className='my-2 flex justify-between'>
+                        <label className=' btn btn-ghost text-black gap-x-2' htmlFor="image"><FaImages className='text-xl'></FaImages> Profile Picture</label>
+                        <input {...register("image")} className='hidden' type="file" id="image" />
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text dark:text-white">Address</span></label>
+                        <input type="text" {...register("address", {
+                            required: true
+                        })} className="input input-bordered w-full max-w-xs " />
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text dark:text-white">Profession</span></label>
+                        <input type="text" {...register("profession", {
+                        })} className="input input-bordered w-full max-w-xs" />
+
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text dark:text-white">Phone</span></label>
+                        <input type="text" {...register("phone", {
+                        })} className="input input-bordered w-full max-w-xs" />
+
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text dark:text-white">Skills</span></label>
+                        <input clas type="text" {...register("skills", {
+                        })} className="input input-bordered w-full max-w-xs h-24 scroll-my-40" />
+
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text dark:text-white">Experience</span></label>
+                        <input type="text" {...register("experience", {
+                        })} className="input input-bordered w-full max-w-xs h-24 scroll-my-40" />
+
+                    </div>
+
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text dark:text-white">Role</span></label>
                         <select {...register("role")}>

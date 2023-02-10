@@ -3,18 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "@emailjs/browser": "^3.10.0",
-=======
+    "@react-pdf-viewer/core": "^3.11.0",
     "@reduxjs/toolkit": "^1.9.2",
->>>>>>> 4a6af1b0a7791d615472d7e3be058504a43b98ac
+    "@stripe/react-stripe-js": "^1.16.4",
+    "@stripe/stripe-js": "^1.46.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "daisyui": "^2.47.0",
+    "emailjs": "^4.0.1",
     "firebase": "^9.15.0",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-drag-drop-files": "^2.3.8",
     "react-hook-form": "^7.42.1",
     "react-hooks": "^1.0.1",
     "react-hot-toast": "^2.4.0",
@@ -23,6 +26,11 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
+    "react-sf-building-blocks": "^1.0.87",
+    "react-sf-themes": "^1.0.24",
+    "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2",
+    "stripe": "^11.9.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

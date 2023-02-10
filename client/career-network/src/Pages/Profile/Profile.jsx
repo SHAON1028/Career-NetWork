@@ -1,35 +1,53 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React from 'react';
+import { useContext } from 'react';
+import { FaEdit } from 'react-icons/fa';
+import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
-function Profile () {
-    const { register, handleSubmit, errors } = useForm();
-
+const Profile = () => {
+    const { user } = useContext(AuthContext)
+    const profile = useLoaderData()
+    console.log(profile);
     return (
-        <form onSubmit={handleSubmit()}>
-            <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                ref={register({ required: true })}
-            />
-            {errors.name && <span>This field is required</span>}
-            <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                ref={register({ required: true })}
-            />
-            {errors.email && <span>This field is required</span>}
-            <input
-                type="number"
-                name="age"
-                placeholder="Age"
-                ref={register({ required: true })}
-            />
-            {errors.age && <span>This field is required</span>}
-            <button type="submit">Update User Info</button>
-        </form>
-    );
-}
+        <div className='flex justify-center'>
+            <div className='flex justify-center w-[600px] shadow-lg p-10'>
+                <div className='grid grid-cols-1 gap-y-6'>
+                    <div className='flex justify-between'>
+                        <img className='w-36 rounded-full' src={profile?.phone} alt="" />
+                        <FaEdit></FaEdit>
+                    </div>
+                    <div className='divider'></div>
+                    <div>
+                        <h2 className="text-md font-semibold">Name: {profile.name}</h2>
+                    </div>
+                    <div className='divider'></div>
 
-export default Profile ;
+                    <div>
+                        <h2 className="text-md font-semibold">Email: {profile.email}</h2>
+                    </div>
+                    <div className='divider'></div>
+
+                    <div>
+                        <h2 className="text-md font-semibold">Address: {profile.address}</h2>
+                    </div>
+                    <div className='divider'></div>
+                    <div>
+                        <h2 className="text-md font-semibold">Profession: {profile.skills}</h2>
+                    </div>
+                    <div className='divider'></div>
+
+                    <div>
+                        <h2 className="text-md font-semibold">Skills: {profile.skills}</h2>
+                    </div>
+                    <div className='divider'></div>
+
+                    <div>
+                        <h2 className="text-md font-semibold">Phone: {profile.experience}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Profile;
