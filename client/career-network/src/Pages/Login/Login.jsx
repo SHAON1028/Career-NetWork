@@ -11,6 +11,7 @@ const Login = () => {
     const { logIn, googleSignIn, setUser, githubSignIn } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [loginUserEmail, setLoginUserEmail] = useState('');
+
     const [token] = useToken(loginUserEmail);
     const location = useLocation();
     const googleProvider = new GoogleAuthProvider()
@@ -29,6 +30,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 setLoginUserEmail(data.email);
+                console.log(loginUserEmail);
                 if (user?.uid) {
                     navigate('/')
                 }
