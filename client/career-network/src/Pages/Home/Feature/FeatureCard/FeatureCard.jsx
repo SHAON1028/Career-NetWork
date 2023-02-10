@@ -5,7 +5,7 @@ import { MdWork } from "react-icons/md";
 import { BsCalendar2DateFill } from "react-icons/bs";
 
 const FeatureCard = ({ feature }) => {
-    const { _id, job_title, duty_hours, location, salary, skills, experience, deadline } = feature;
+    const { _id, job_title, location, skills, experience, deadline } = feature;
     return (
         <div className="card h-40 lg:card-side shadow-xl gap-y-4">
             <figure><img src='' alt="Album" /></figure>
