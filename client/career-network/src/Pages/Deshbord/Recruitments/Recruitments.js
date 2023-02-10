@@ -40,7 +40,7 @@ function Recruitments() {
                   </div>
                 </td>
                 <td>{job.job_title}</td>
-                <td>{job?.isPaid !== true && <Link to={`/employedashboard/payment/${job._id}`}><button className='btn btn-xs btn-info'>Pay</button></Link>}{job?.isPaid === true && <button className='btn btn-xs  btn-success'>Paid</button>}</td>
+                <td>{job?.isPaid !== true && <Link to={`/employedashboard/payment/${job._id}`}><button className='btn btn-xs btn-info'>Pay For Feature</button></Link>}{job?.isPaid === true && <button className='btn btn-xs  btn-success'>Paid For Feature</button>}</td>
               </tr>)
             }
 
