@@ -108,7 +108,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/employedashboard",
-        element: <EmployeeDeshbord></EmployeeDeshbord>,
+        element: <PrivateRoute><EmployeeDeshbord></EmployeeDeshbord></PrivateRoute>,
         errorElement: <DisplayError></DisplayError>,
         children: ([
             {
