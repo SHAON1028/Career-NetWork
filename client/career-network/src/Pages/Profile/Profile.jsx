@@ -13,7 +13,7 @@ const Profile = () => {
             <div className='flex justify-center w-[600px] shadow-lg p-10'>
                 <div className='grid grid-cols-1 gap-y-6'>
                     <div className='flex justify-between'>
-                        <img className='w-36 rounded-full' src={profile?.phone} alt="" />
+                        <img className='w-36 rounded-full' src={profile?.profileImg} alt="" />
                         <FaEdit></FaEdit>
                     </div>
                     <div className='divider'></div>

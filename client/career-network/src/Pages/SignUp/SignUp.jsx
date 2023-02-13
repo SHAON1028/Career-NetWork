@@ -25,7 +25,7 @@ const SignUp = () => {
 
 
     const handleSignUp = data => {
-        // console.log(data)
+        console.log(data)
         const image = data.image[0]
         console.log(image)
         const formData = new FormData()
@@ -44,7 +44,7 @@ const SignUp = () => {
                             const verify = false
                             const user = result.user
                             const profileImg = imgData.data.url
-                            console.log(user);
+                            // console.log( imgData.data.url);
                             setUser(user);
                             // console.log(user)
                             const userInfo = {
@@ -55,8 +55,8 @@ const SignUp = () => {
                                 data.email,
                                 data.role,
                                 verify,
+                                profileImg,
                                 data.address,
-                                imgData.data.url,
                                 data.profession,
                                 data.phone,
                                 data.skills,
@@ -98,19 +98,18 @@ const SignUp = () => {
     }
 
 
-    const saveUser = (name, email, role, profession, address, phone, skills, experience, img) => {
-        const verify = false
+    const saveUser = (name, email, role,verify,   profileImg, address, profession,  phone, skills, experience,  ) => {
         const user = {
             name,
             email,
             role,
             verify,
-            address: address,
-            profileImg: img,
-            profession: profession ,
-            phone: phone,
-            skills: skills,
-            experience: experience,
+            profileImg,
+            address,
+            profession ,
+            phone,
+            skills,
+            experience,
 
         };
         fetch('http://localhost:5000/user', {
@@ -157,7 +156,7 @@ const SignUp = () => {
                     </div>
                     <div className='my-2 flex justify-between'>
                         <label className=' btn btn-ghost text-black gap-x-2' htmlFor="image"><FaImages className='text-xl'></FaImages> Profile Picture</label>
-                        <input {...register("image")} className='hidden' type="file" id="image" />
+                        <input {...register("image")} className='hidden' type="file" id='image' />
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text dark:text-white">Address</span></label>
@@ -179,7 +178,7 @@ const SignUp = () => {
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text dark:text-white">Skills</span></label>
-                        <input clas type="text" {...register("skills", {
+                        <input  type="text" {...register("skills", {
                         })} className="input input-bordered w-full max-w-xs h-24 scroll-my-40" />
 
                     </div>
